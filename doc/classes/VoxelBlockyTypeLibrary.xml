@@ -11,6 +11,7 @@
 			<return type="int" />
 			<param index="0" name="type_name" type="StringName" />
 			<description>
+				Gets the default model index from a name.
 			</description>
 		</method>
 		<method name="get_model_index_single_attribute" qualifiers="const">
@@ -18,6 +19,16 @@
 			<param index="0" name="type_name" type="StringName" />
 			<param index="1" name="attrib_value" type="Variant" />
 			<description>
+				Gets the model index from a type name and the value of a single attribute. Values can be specified
+				either as integers, booleans, or their name if they have one.
+				
+				Example of arguments:
+				[codeblock]
+				(&"mygame:button", {
+				    "direction": VoxelBlockyAttributeDirection.DIR_POSITIVE_Z
+				})
+				[/codeblock]
+				This method is slow, and it is recommended to cache the result in a variable instead of repeated calls.
 			</description>
 		</method>
 		<method name="get_model_index_with_attributes" qualifiers="const">
@@ -25,12 +36,27 @@
 			<param index="0" name="type_name" type="StringName" />
 			<param index="1" name="attribs_dict" type="Dictionary" />
 			<description>
+				Gets the model index from a type name and the value of all its attributes. Values can be specified
+				either as integers, booleans, or their name if they have one.
+				
+				Example of arguments:
+				[codeblock]
+				(&"mygame:button", {
+				    "direction": VoxelBlockyAttributeDirection.DIR_POSITIVE_Z,
+				    "active": &"on",
+				    "powered": false
+				})
+				[/codeblock]
+				This method is slow, and it is recommended to cache the result in a variable instead of repeated calls.
 			</description>
 		</method>
 		<method name="get_type_from_name" qualifiers="const">
 			<return type="VoxelBlockyType" />
 			<param index="0" name="type_name" type="StringName" />
 			<description>
+				Gets an array with two elements:
+				- The type's name as a StringName
+				- A dictionary with each attribute as a key, and the value as an integer.
 			</description>
 		</method>
 		<method name="get_type_name_and_attributes_from_model_index" qualifiers="const">
